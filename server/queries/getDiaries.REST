@@ -1,4 +1,0 @@
-Get http://localhost:3002/api/diaries
-content-type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RfdXNlcjIiLCJpZCI6IjY1NDhhMTE4N2ZlNWMxOGMyZGE2NTIzNiIsImlhdCI6MTY5OTI2MDU0MSwiZXhwIjoxNjk5MjY0MTQxfQ.edWB160ajVlV1YKR36di8-4Nw8iTleZt7YD_KG2s7tg
-
