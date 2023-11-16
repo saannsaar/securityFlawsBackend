@@ -3,19 +3,11 @@ const express = require('express')
 const cors = require('cors')
 const app = express();
 
-// Should use logger to log relevant information for example about login failures into a logfile:
-// const winston = require('winston')
-//const logger = winston.createLogger({
-//   transports: [
-//     new winston.transports.Console(),
-//     new winston.transports.File({ filename: 'error.log', level: 'error' }),
-//   ],
-// })
 
-// app.use(err, request, response, next) => {
-//   requestLogger.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`)
-//   next(error)
-// }
+
+
+
+
 
 // We should specify from what specific origin requests are allowed like this:
 // const corsOptions = {
@@ -24,7 +16,6 @@ const app = express();
 // }
 
 // app.use(cors(corsOptions))
-
 
 app.use(cors())
 console.log(config)

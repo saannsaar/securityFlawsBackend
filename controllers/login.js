@@ -2,6 +2,7 @@
 // const bcrypt = require('bcrypt')
 const loginRouter = require('express').Router()
 const User = require('../models/User')
+const { logger } = require('../utlis/logger')
 
 loginRouter.post('/', async (request, response) => {
     try {
@@ -26,7 +27,7 @@ loginRouter.post('/', async (request, response) => {
     // token would be added to send({token, ....})
     return response.status(200).send({username: user.username, name: user.name})
     } catch(error) {
-        console.log("ERRO", error)
+        logger.error("ERROR loggin", request.body.username)
         response.status(401).send({error: error})
     }
 })
