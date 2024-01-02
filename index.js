@@ -3,8 +3,8 @@ const express = require('express')
 const cors = require('cors')
 const app = express();
 
-
-
+const cookieParser = require('cookie-parser')
+const csrf = require('@dr.pogodin/csurf')
 
 
 
@@ -17,8 +17,28 @@ const app = express();
 
 // app.use(cors(corsOptions))
 
-app.use(cors())
-console.log(config)
+app.use(cors({
+  origin: 'http://localhost:3003', // Specify the domain
+  credentials: true,
+}))
+app.use(cookieParser());
+
+
+const csrfProtection = csrf({ cookie: true })
+app.use(csrfProtection)
+console.log(csrfProtection)
+
+app.use((req, res, next) => {
+  console.log('Cookies:', req.cookies);
+  next();
+});
+app.use((req, res, next) => {
+  console.log(req.csrfToken())
+  res.cookie('XSRF-TOKEN', req.csrfToken())
+  console.log(res.cookie)
+  next()
+})
+
 const mongoose = require('mongoose')
 
 const diaryRouter = require('./controllers/diaries')
@@ -38,6 +58,15 @@ mongoose.connect(config.MONGODB_URI)
     console.log('error connecting to MongoDB:', error.message)
   })
 
+  app.use((req, res, next) => {
+    console.log('Cookies:', req);
+    next();
+  });
+  app.use((req, res, next) => {
+    console.log(req.csrfToken())
+    res.cookie('XSRF-TOKEN', req.csrfToken())
+    next()
+  })
 app.use(express.json())
 
 
@@ -48,10 +77,11 @@ app.use('/api/login', loginRouter)
   
   app.use(middleware.unknownEndpoint)
 
-
+  
 app.get("/api", (req, res) => {
     res.json({ message: "Hello from server!" });
   });
+
 
 
 app.listen(config.PORT, () => {

@@ -53,6 +53,8 @@ diaryRouter.post('/',  async (request, response) => {
    response.status(201).json(savedDiary)
   } catch(error) {
     // Use logger instead and just add some selfmade error message that doesnt include any real error info
+     // Better way to prevent error message generation containing sensitive information flaws would be:
+        // return response.status(401).send({error: "Diary entry creation failed"})
     response.status(401).json(error)
   }
 })
@@ -71,6 +73,8 @@ diaryRouter.post('/',  async (request, response) => {
     await findDiary.deleteOne()
     response.status(204).end()
   } catch(error) {
+     // Better way to prevent error message generation containing sensitive information flaws would be:
+        // return response.status(401).send({error: "Delete action failed"})
     response.status(401).json(error)
   }
   })
