@@ -18,7 +18,7 @@ const csrf = require('@dr.pogodin/csurf')
 // app.use(cors(corsOptions))
 
 app.use(cors({
-  origin: 'http://localhost:3003', // Specify the domain
+  origin: 'https://security-issues-frontend.onrender.com', // Specify the domain
   credentials: true,
 }))
 app.use(cookieParser());
