@@ -6,19 +6,14 @@ const app = express();
 const cookieParser = require('cookie-parser')
 const csrf = require('@dr.pogodin/csurf')
 
-
-
-
 // We should specify from what specific origin requests are allowed like this:
 // const corsOptions = {
 //   origin: 'http://localhost:3000/',
 //   optionsSuccessStatus: 200,
 // }
-
 // app.use(cors(corsOptions))
 
 app.use(cors({
-  origin: 'https://security-issues-frontend.onrender.com', // Specify the domain
   credentials: true,
 }))
 app.use(cookieParser());
