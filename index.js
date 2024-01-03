@@ -14,6 +14,7 @@ const csrf = require('@dr.pogodin/csurf')
 // app.use(cors(corsOptions))
 
 app.use(cors({
+  origin: 'https://security-issues-frontend.onrender.com',
   credentials: true,
 }))
 app.use(cookieParser());
