@@ -63,7 +63,11 @@ mongoose.connect(config.MONGODB_URI)
     res.cookie('XSRF-TOKEN', req.csrfToken())
     next()
   })
-app.use(express.json())
+
+  app.use(express.static('build'))
+  app.use(express.json())
+  
+
 
 
 app.use('/api/diaries', diaryRouter)
@@ -71,9 +75,10 @@ app.use('/api/users', usersRouter)
 app.use('/api/login', loginRouter)
 
   
+
   app.use(middleware.unknownEndpoint)
 
-  
+
 app.get("/api", (req, res) => {
     res.json({ message: "Hello from server!" });
   });
